@@ -5,11 +5,13 @@ import Header from "./components/layout/Header";
 
 function App() {
     return (
-        <div className="App">
-            <Header />
-            <Home/>
+        <Router>
+            <div className="container container-fluid">
+                <Header />
+                <Route path="/" component={Home} exact />
+            </div>
             <Footer />
-        </div>
+        </Router>
     );
 }
 
