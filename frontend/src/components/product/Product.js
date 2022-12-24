@@ -11,7 +11,7 @@ const Product = ({ product }) => {
                 />
                 <div className="card-body d-flex flex-column">
                 <h5 className="card-title">
-                    <Link href={`/product/${product._id}`}>128GB Solid Storage Memory card - SanDisk Ultra</Link>
+                    <Link to={`/product/${product._id}`}>{product.name}</Link>
                 </h5>
                 <div className="ratings mt-auto">
                     <div className="rating-outer">
@@ -20,11 +20,11 @@ const Product = ({ product }) => {
                     <span id="no_of_reviews">({product.numOfReviews} Reviews)</span>
                 </div>
                 <p className="card-text">${product.price}</p>
-                <Link href={`/product/${product._id}`} id="view_btn" className="btn btn-block">View Details</Link>
+                <Link to={`/product/${product._id}`} id="view_btn" className="btn btn-block">View Details</Link>
                 </div>
             </div>
         </div>
-    );
+    )
 };
 
 export default Product
