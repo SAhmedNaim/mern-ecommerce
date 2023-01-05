@@ -11,6 +11,7 @@ import UpdateProfile from "./components/user/UpdateProfile";
 import { loadUser } from "./actions/userActions";
 import store from './store';
 import ProtectedRoute from "./components/route/ProtectedRoute";
+import UpdatePassword from "./components/user/UpdatePassword";
 
 function App() {
 
@@ -30,6 +31,7 @@ function App() {
                 <Route path="/register" component={Register} />
                 <ProtectedRoute path="/me" component={Profile} exact />
                 <ProtectedRoute path="/me/update" component={UpdateProfile} exact />
+                <ProtectedRoute path="/password/update" component={UpdatePassword} exact />
             </div>
             <Footer />
         </Router>
