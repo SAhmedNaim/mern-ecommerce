@@ -4,11 +4,12 @@ import Loader from '../layout/Loader';
 import MetaData from '../layout/MetaData';
 import { useDispatch, useSelector } from 'react-redux';
 import { clearErrors, getProductDetails } from '../../actions/productActions';
+import { addItemToCart } from "../../actions/cartActions";
 import { useAlert } from 'react-alert';
 
 const ProductDetails = ({ match }) => {
 
-    const [quantity, setQuantity] = useState();
+    const [quantity, setQuantity] = useState(1);
 
     const dispatch = useDispatch();
     const alert = useAlert();
@@ -23,6 +24,11 @@ const ProductDetails = ({ match }) => {
             dispatch(clearErrors());
         }
     }, [dispatch, alert, error, match.params.id]);
+
+    const addToCart = () => {
+        dispatch(addItemToCart(match.params.id, quantity));
+        alert.success('Item added to cart.');
+    };
 
     const increaseQty = () => {
         const count = document.querySelector('.count');
@@ -80,7 +86,7 @@ const ProductDetails = ({ match }) => {
 
                                 <span className="btn btn-primary plus" onClick={increaseQty}>+</span>
                             </div>
-                            <button type="button" id="cart_btn" className="btn btn-primary d-inline ml-4">Add to Cart</button>
+                            <button type="button" id="cart_btn" className="btn btn-primary d-inline ml-4" disabled={product.stock === 0} onClick={addToCart}>Add to Cart</button>
                             <hr />
                             <p>Status: <span id="stock_status" className={product.stock > 0 ? 'greenColor' : 'redColor'}>{product.stock > 0 ? 'In Stock' : 'Out of Stock'}</span></p>
                             <hr />
