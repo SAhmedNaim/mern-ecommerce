@@ -82,7 +82,7 @@ export const authReducer = (state = { user: {} }, action) => {
         case CLEAR_ERRORS:
             return {
                 ...state,
-                error: action.payload
+                error: null
             };
 
         default:
@@ -126,7 +126,7 @@ export const userReducer = (state = {}, action) => {
         case CLEAR_ERRORS:
             return {
                 ...state,
-                error: action.payload
+                error: null
             };
 
         default:

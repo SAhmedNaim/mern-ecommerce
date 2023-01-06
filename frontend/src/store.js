@@ -10,7 +10,7 @@ const reducer = combineReducers({
     productDetails: productDetailsReducer,
     auth: authReducer,
     user: userReducer,
-    forgotPasswordReducer: forgotPasswordReducer
+    forgotPassword: forgotPasswordReducer
 });
 
 let initialState = {};

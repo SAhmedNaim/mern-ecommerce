@@ -12,7 +12,7 @@ const NewPassword = ({ history, match }) => {
     const alert = useAlert();
     const dispatch = useDispatch();
 
-    const { error, success } = useSelector(state => state.user);
+    const { error, success } = useSelector(state => state.forgotPassword);
 
     useEffect(() => {
 
@@ -43,7 +43,7 @@ const NewPassword = ({ history, match }) => {
             <MetaData title={'New Password Reset'} />
             <div className="row wrapper">
                 <div className="col-10 col-lg-5">
-                    <form className="shadow-lg" onSubmit={onsubmit}>
+                    <form className="shadow-lg" onSubmit={submitHandler}>
                         <h1 className="mb-3">New Password</h1>
 
                         <div className="form-group">
