@@ -6,7 +6,7 @@ import { useAlert } from 'react-alert';
 import { useDispatch, useSelector } from 'react-redux';
 import { login, clearErrors } from '../../actions/userActions';
 
-function Login({ history }) {
+function Login({ history, location }) {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -15,11 +15,12 @@ function Login({ history }) {
     const dispatch = useDispatch();
 
     const { isAuthenticated, error, loading } = useSelector(state => state.auth);
+    const redirect = location.search ? location.search.split('=')[1] : '/';
 
     useEffect(() => {
 
         if(isAuthenticated) {
-            history.push('/');
+            history.push(redirect);
         }
 
         if(error) {
