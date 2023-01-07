@@ -49,7 +49,7 @@ const Cart = ({ history }) => {
                             <div className="col-12 col-lg-8">
 
                                 {cartItems.map(item => (
-                                    <>
+                                    <div key={item.product}>
                                         <hr/>
                                         <div className="cart-item">
                                             <div className="row">
@@ -81,7 +81,7 @@ const Cart = ({ history }) => {
 
                                             </div>
                                         </div>
-                                    </>
+                                    </div>
                                 ))}
                             </div>
 
