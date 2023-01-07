@@ -5,6 +5,7 @@ import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
 import { saveShippingInfo } from "../../actions/cartActions";
 import { countries } from "countries-list";
+import CheckoutSteps from "./CheckoutSteps";
 
 const Shipping = ({ history }) => {
 
@@ -31,6 +32,9 @@ const Shipping = ({ history }) => {
     return (
         <>
             <MetaData title={'Shipping Info'} />
+
+            <CheckoutSteps shipping />
+
             <div className="row wrapper">
                 <div className="col-10 col-lg-5">
                     <form className="shadow-lg" onSubmit={submitHandler}>
