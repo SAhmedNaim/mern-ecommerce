@@ -18,3 +18,12 @@ exports.processPayment = catchAsyncError(async(req, res, next) => {
     });
 
 });
+
+// Process stripe API Key  => /api/v1/stripeapi
+exports.sendStripeApi = catchAsyncError(async(req, res, next) => {
+
+    res.status(200).json({
+        stripeApiKey: process.env.STRIPE_API_KEY
+    });
+
+});
