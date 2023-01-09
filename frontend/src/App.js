@@ -21,6 +21,7 @@ import Payment from "./components/cart/Payment";
 import axios from 'axios';
 import {Elements} from "@stripe/react-stripe-js";
 import {loadStripe} from "@stripe/stripe-js";
+import ListOrders from "./components/order/ListOrders";
 
 function App() {
 
@@ -61,6 +62,8 @@ function App() {
                 <ProtectedRoute path="/me" component={Profile} exact />
                 <ProtectedRoute path="/me/update" component={UpdateProfile} exact />
                 <ProtectedRoute path="/password/update" component={UpdatePassword} exact />
+
+                <ProtectedRoute path="/orders/me" component={ListOrders} exact />
             </div>
             <Footer />
         </Router>
