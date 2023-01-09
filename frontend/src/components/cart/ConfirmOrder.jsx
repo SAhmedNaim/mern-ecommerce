@@ -57,9 +57,8 @@ const ConfirmOrder = ({ history }) => {
                                         <Link to={`/product/${item.product}`}>{item.name}</Link>
                                     </div>
 
-
                                     <div className="col-4 col-lg-4 mt-4 mt-lg-0">
-                                        <p>{item.quality} x ${item.price} = <b>${item.quantity * item.price}</b></p>
+                                        <p>{item.quantity} x ${item.price} = <b>${item.quantity * item.price}</b></p>
                                     </div>
 
                                 </div>

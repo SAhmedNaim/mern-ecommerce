@@ -11,6 +11,7 @@ import {
     CardExpiryElement,
     CardCvcElement
 } from "@stripe/react-stripe-js";
+import axios from "axios";
 
 const options = {
     style: {
@@ -37,6 +38,67 @@ const Payment = ({ history }) => {
 
     }, []);
 
+    const orderInfo = JSON.parse(sessionStorage.getItem('orderInfo'));
+
+    const paymentData = {
+        amount: Math.round(orderInfo.totalPrice * 100)
+    };
+    const submitHandler = async (e) => {
+        e.preventDefault();
+
+        document.querySelector('#pay_btn').disabled = true;
+
+        let res;
+
+        try {
+
+            const config = {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            };
+
+            res = await axios.post('/api/v1/payment/process', paymentData, config);
+
+            const clientSecret = res.data.client_secret;
+
+            if(!stripe || !elements) {
+                return;
+            }
+
+            const result = await stripe.confirmCardPayment(clientSecret, {
+                payment_method: {
+                    card: elements.getElement(CardNumberElement),
+                    billing_details: {
+                        name: user.name,
+                        email: user.email
+                    }
+                }
+            });
+
+            if(result.error) {
+                alert.error(result.error.message);
+                document.querySelector('#pay_btn').disabled = false;
+            } else {
+
+                // Payment is processed por not
+                if(result.paymentIntent.status === 'succeeded') {
+
+                    // TODO: New Order
+
+                    history.push('/success');
+
+                } else {
+                    alert.error('There is some issue while payment processing');
+                }
+            }
+
+        } catch(error) {
+            document.querySelector('#pay_btn').disabled = false;
+            alert.error(error.response.data.errorMessage);
+        }
+    };
+
     return (
         <>
             <MetaData title={'Shipping Info'} />
@@ -45,7 +107,7 @@ const Payment = ({ history }) => {
 
             <div className="row wrapper">
                 <div className="col-10 col-lg-5">
-                    <form className="shadow-lg">
+                    <form className="shadow-lg" onSubmit={submitHandler}>
                         <h1 className="mb-4">Card Info</h1>
                         <div className="form-group">
                             <label htmlFor="card_num_field">Card Number</label>
@@ -78,13 +140,12 @@ const Payment = ({ history }) => {
                             />
                         </div>
 
-
                         <button
                             id="pay_btn"
                             type="submit"
                             className="btn btn-block py-3"
                         >
-                            Pay
+                            Pay {` - ${orderInfo && orderInfo.totalPrice}`}
                         </button>
 
                     </form>
