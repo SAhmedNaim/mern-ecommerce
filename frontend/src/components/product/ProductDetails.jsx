@@ -7,6 +7,7 @@ import {clearErrors, getProductDetails, newReview} from '../../actions/productAc
 import { addItemToCart } from "../../actions/cartActions";
 import { useAlert } from 'react-alert';
 import {NEW_REVIEW_RESET} from "../../constants/productConstants";
+import ListReviews from "../review/ListReviews";
 
 const ProductDetails = ({ match }) => {
 
@@ -205,6 +206,11 @@ const ProductDetails = ({ match }) => {
                             </div>
                         </div>
                     </div>
+
+                    {product.reviews && product.reviews.length > 0 && (
+                        <ListReviews reviews={product.reviews} />
+                    )}
+
                 </>
             )}
         </>
