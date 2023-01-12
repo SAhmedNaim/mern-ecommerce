@@ -82,13 +82,13 @@ export const newReview = (reviewData) => async (dispatch) => {
 
         dispatch({
             type: NEW_REVIEW_SUCCESS,
-            payload: data.product
+            payload: data.success
         });
 
     } catch(error) {
         dispatch({
             type: NEW_REVIEW_FAIL,
-            payload: error.response.data.message
+            payload: error.response.data.errorMessage
         });
     }
 };
