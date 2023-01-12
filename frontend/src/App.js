@@ -23,6 +23,7 @@ import {Elements} from "@stripe/react-stripe-js";
 import {loadStripe} from "@stripe/stripe-js";
 import ListOrders from "./components/order/ListOrders";
 import OrderDetails from "./components/order/OrderDetails";
+import Dashboard from "./components/admin/Dashboard";
 
 function App() {
 
@@ -41,8 +42,8 @@ function App() {
 
     return (
         <Router>
+            <Header />
             <div className="container container-fluid">
-                <Header />
                 <Route path="/" component={Home} exact />
                 <Route path="/search/:keyword" component={Home} />
                 <Route path="/product/:id" component={ProductDetails} exact />
@@ -66,7 +67,11 @@ function App() {
 
                 <ProtectedRoute path="/orders/me" component={ListOrders} exact />
                 <ProtectedRoute path="/order/:id" component={OrderDetails} exact />
+
             </div>
+
+            <ProtectedRoute path="/dashboard" isAdmin={true} component={Dashboard} exact />
+
             <Footer />
         </Router>
     );
