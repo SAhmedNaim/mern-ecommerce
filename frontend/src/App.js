@@ -25,6 +25,8 @@ import ListOrders from "./components/order/ListOrders";
 import OrderDetails from "./components/order/OrderDetails";
 import Dashboard from "./components/admin/Dashboard";
 import ProductsList from "./components/admin/ProductsList";
+import NewProduct from "./components/admin/NewProduct";
+import {useSelector} from "react-redux";
 
 function App() {
 
@@ -40,6 +42,8 @@ function App() {
 
         getStripeApiKey();
     }, []);
+
+    const { user, loading } = useSelector(state => state.auth);
 
     return (
         <Router>
@@ -73,8 +77,11 @@ function App() {
 
             <ProtectedRoute path="/dashboard" isAdmin={true} component={Dashboard} exact />
             <ProtectedRoute path="/admin/products" isAdmin={true} component={ProductsList} exact />
+            <ProtectedRoute path="/admin/product" isAdmin={true} component={NewProduct} exact />
 
-            <Footer />
+            {!loading && user.role !== 'admin' && (
+                <Footer />
+            )}
         </Router>
     );
 }
