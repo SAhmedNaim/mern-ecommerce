@@ -32,7 +32,6 @@ const ProcessOrder = ({ match }) => {
             dispatch(clearErrors());
         }
 
-
         if (isUpdated) {
             alert.success('Order updated successfully');
             dispatch({ type: UPDATE_ORDER_RESET });

@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { MDBDataTable } from "mdbreact";
 
 import MetaData from "../layout/MetaData";
 import Loader from "../layout/Loader";
@@ -8,14 +7,13 @@ import Loader from "../layout/Loader";
 import { useAlert } from "react-alert";
 import { useDispatch, useSelector } from "react-redux";
 import { getOrderDetails, clearErrors } from "../../actions/orderActions";
-import shipping from "../cart/Shipping";
 
 const OrderDetails = ({ match }) => {
 
     const alert = useAlert();
     const dispatch = useDispatch();
 
-    const { loading, error, order = {} } = useSelector(state => state.myOrders);
+    const { loading, error, order = {} } = useSelector(state => state.orderDetails);
     const { shippingInfo, orderItems, paymentInfo, user, totalPrice, orderStatus } = order;
 
     useEffect(() => {
@@ -27,7 +25,7 @@ const OrderDetails = ({ match }) => {
         }
     }, [dispatch, alert, error, match.params.id]);
 
-    const shippingDetails = shippingInfo && `${shippingInfo.address}, ${shippingInfo.city}, ${shippingInfo.postalCode}, ${shipping.country}`;
+    const shippingDetails = shippingInfo && `${shippingInfo.address}, ${shippingInfo.city}, ${shippingInfo.postalCode}, ${shippingInfo.country}`;
 
     const isPaid = paymentInfo && paymentInfo.status === 'succeeded' ? true : false;
 

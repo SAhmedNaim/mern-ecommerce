@@ -86,7 +86,7 @@ function App() {
             <ProtectedRoute path="/admin/product/:id" isAdmin={true} component={UpdateProduct} exact />
 
             <ProtectedRoute path="/admin/orders" isAdmin={true} component={OrdersList} exact />
-            <ProtectedRoute path="/admin/orders/:id" isAdmin={true} component={ProcessOrder} exact />
+            <ProtectedRoute path="/admin/order/:id" isAdmin={true} component={ProcessOrder} exact />
 
             {!loading && user?.role !== 'admin' && (
                 <Footer />

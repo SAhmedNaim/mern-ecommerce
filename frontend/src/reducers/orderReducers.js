@@ -88,7 +88,7 @@ export const myOrdersReducer = (state = {orders: []}, action) => {
 
 };
 
-export const orderDetailsReducer = (state = { orders: {} }, action) => {
+export const orderDetailsReducer = (state = { order: {} }, action) => {
 
     switch (action.type) {
 
@@ -100,7 +100,7 @@ export const orderDetailsReducer = (state = { orders: {} }, action) => {
         case ORDER_DETAILS_SUCCESS:
             return {
                 loading: false,
-                orders: action.payload
+                order: action.payload
             }
 
         case ORDER_DETAILS_FAIL:
