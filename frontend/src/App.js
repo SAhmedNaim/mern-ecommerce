@@ -30,6 +30,7 @@ import {useSelector} from "react-redux";
 import UpdateProduct from "./components/admin/UpdateProduct";
 import OrdersList from "./components/admin/OrdersList";
 import ProcessOrder from "./components/admin/ProcessOrder";
+import OrderSuccess from "./components/cart/OrderSuccess";
 
 function App() {
 
@@ -58,7 +59,8 @@ function App() {
 
                 <Route path="/cart" component={Cart} exact />
                 <ProtectedRoute path="/shipping" component={Shipping} />
-                <ProtectedRoute path="/order/confirm" component={ConfirmOrder} />
+                <ProtectedRoute path="/confirm" component={ConfirmOrder} />
+                <ProtectedRoute path="/success" component={OrderSuccess} />
                 {stripeApiKey &&
                     <Elements stripe={loadStripe(stripeApiKey)}>
                         <ProtectedRoute path="/payment" component={Payment} />
@@ -86,7 +88,7 @@ function App() {
             <ProtectedRoute path="/admin/orders" isAdmin={true} component={OrdersList} exact />
             <ProtectedRoute path="/admin/orders/:id" isAdmin={true} component={ProcessOrder} exact />
 
-            {!loading && user.role !== 'admin' && (
+            {!loading && user?.role !== 'admin' && (
                 <Footer />
             )}
         </Router>

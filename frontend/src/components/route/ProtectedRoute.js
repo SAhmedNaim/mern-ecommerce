@@ -20,7 +20,7 @@ const ProtectedRoute = ({ isAdmin, component: Component, ...rest }) => {
                             return <Redirect to='/' />;
                         }
 
-                        return <Component {...props} />                    
+                        return <Component {...props} />
                     }}
                 />
             )}

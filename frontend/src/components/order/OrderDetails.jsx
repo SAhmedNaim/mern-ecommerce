@@ -15,7 +15,7 @@ const OrderDetails = ({ match }) => {
     const alert = useAlert();
     const dispatch = useDispatch();
 
-    const { loading, error, order } = useSelector(state => state.myOrders);
+    const { loading, error, order = {} } = useSelector(state => state.myOrders);
     const { shippingInfo, orderItems, paymentInfo, user, totalPrice, orderStatus } = order;
 
     useEffect(() => {
